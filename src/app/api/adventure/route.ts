@@ -43,12 +43,14 @@ export async function GET() {
     }
     \`\`\`
     `;
-    
 
     const userMessage = "Generate a new adventure story.";
-    const aiResponse = await generateCompletion({ systemPrompt, message: userMessage });
+    const aiResponse = await generateCompletion({
+      systemPrompt,
+      message: userMessage,
+    });
 
-    if(!aiResponse) throw new Error("The ai did not return a response");
+    if (!aiResponse) throw new Error("The ai did not return a response");
 
     console.log("AI response:", aiResponse);
 
@@ -65,14 +67,26 @@ export async function GET() {
     console.error("Error generating adventure:", error);
 
     // Default fallback adventure
-    return NextResponse.json({
-      id: "default_001",
-      title: "The Mysterious Cave",
-      text: "You find yourself at the entrance of a dark cave. A cold wind howls from within.",
-      choices: [
-        { id: "choice1", text: "Enter the cave.", nextStep: "You cautiously step inside, feeling the air grow colder." },
-        { id: "choice2", text: "Look around for another way in.", nextStep: "You notice a narrow path leading around the cave." }
-      ]
-    }, { status: 500 });
+    return NextResponse.json(
+      {
+        id: "default_001",
+        title: "The Mysterious Cave",
+        text: "You find yourself at the entrance of a dark cave. A cold wind howls from within.",
+        choices: [
+          {
+            id: "choice1",
+            text: "Enter the cave.",
+            nextStep:
+              "You cautiously step inside, feeling the air grow colder.",
+          },
+          {
+            id: "choice2",
+            text: "Look around for another way in.",
+            nextStep: "You notice a narrow path leading around the cave.",
+          },
+        ],
+      },
+      { status: 500 },
+    );
   }
 }

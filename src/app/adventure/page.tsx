@@ -46,38 +46,50 @@ export default function AdventurePage() {
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen bg-cover bg-center px-4"
-      style={{ backgroundImage: "url('https://source.unsplash.com/2EJCSULRwC8')" }}>
-      
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/50"></div>
-
-      <Card className="relative z-10 w-full max-w-2xl text-center bg-white/10 backdrop-blur-md border border-white/20 shadow-lg p-6 rounded-2xl">
+    <div className="relative flex flex-col items-center justify-center min-h-screen bg-cover bg-center px-4">
+      <Card className="relative z-10 w-full max-w-2xl text-center bg-white/10 backdrop-blur-md border border-blue-500 shadow-lg p-6 rounded-2xl">
         <CardContent>
-          <h1 className="text-3xl font-bold text-white">Your Adventure Begins</h1>
+          <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
+            Your Adventure Begins
+          </h1>
 
           {/* Story Content */}
-          <div className="mt-4 text-gray-200">
-            {loading ? <Skeleton className="h-24 w-full bg-gray-600" /> : <p>{story || "Click below to start your journey!"}</p>}
+          <div className="mt-4 text-slate-600">
+            {loading ? (
+              <Skeleton className="h-24 w-full bg-gray-600" />
+            ) : (
+              <p>{story || "Click below to start your journey!"}</p>
+            )}
           </div>
 
           {/* Choice Buttons */}
           <div className="mt-6 space-y-2">
             {choices.length > 0 ? (
               choices.map((choice, index) => (
-                <Button key={index} className="w-full bg-blue-500 hover:bg-blue-600 text-white" onClick={() => chooseOption(choice)}>
+                <Button
+                  key={index}
+                  className="w-full bg-blue-500 hover:bg-blue-600 text-white"
+                  onClick={() => chooseOption(choice)}
+                >
                   {choice}
                 </Button>
               ))
             ) : (
-              <Button className="w-full bg-green-500 hover:bg-green-600 text-white" onClick={startAdventure} disabled={loading}>
+              <Button
+                className="w-full bg-blue-500 hover:bg-blue-600 text-white"
+                onClick={startAdventure}
+                disabled={loading}
+              >
                 {loading ? "Loading..." : "Start Adventure"}
               </Button>
             )}
           </div>
 
           {/* Back to Home */}
-          <Button className="mt-4 w-full bg-gray-700 hover:bg-gray-800 text-white" onClick={() => router.push("/")}>
+          <Button
+            className="mt-4 w-full bg-gray-700 hover:bg-gray-800 text-white"
+            onClick={() => router.push("/")}
+          >
             Back to Home
           </Button>
         </CardContent>
