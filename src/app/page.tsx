@@ -9,9 +9,7 @@ export default function HomePage() {
   const router = useRouter();
 
   return (
-    <div
-      className="relative flex items-center justify-center min-h-screen bg-cover bg-center"
-    >
+    <div className="relative flex items-center justify-center min-h-screen bg-cover bg-center">
       {/* Overlay for better text readability */}
       <div className="absolute inset-0"></div>
 

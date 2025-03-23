@@ -57,14 +57,18 @@ export default function AdventureGame() {
       <Card className="relative z-10 w-full max-w-2xl text-center bg-white/10 backdrop-blur-md border border-blue-500 shadow-lg p-6 rounded-2xl">
         <CardContent>
           <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
-            Your Adventure Begins
+            {story.length < 1
+              ? "Your Adventure Begins"
+              : "Continue your adventure..."}
           </h1>
 
           <div className="mt-4 text-slate-600">
             {loading ? (
               <Skeleton className="h-24 w-full bg-gray-600" />
             ) : (
-              <p className="whitespace-pre-line">{story || "Click below to start your journey!"}</p>
+              <p className="whitespace-pre-line">
+                {story || "Click below to start your journey!"}
+              </p>
             )}
           </div>
 
@@ -73,7 +77,7 @@ export default function AdventureGame() {
               choices.map((choice, index) => (
                 <Button
                   key={index}
-                  className="w-full bg-blue-500 hover:bg-blue-600 text-white"
+                  className="w-full bg-blue-500 hover:bg-blue-600 text-white break-words text-left"
                   onClick={() => chooseOption(choice)}
                 >
                   {choice}

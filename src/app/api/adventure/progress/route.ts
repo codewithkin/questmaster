@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { generateCompletion } from "@/lib/ai/getCompletion"; 
+import { generateCompletion } from "@/lib/ai/getCompletion";
 import { getSession, updateSession } from "@/lib/sessionManager";
 
 export async function POST(req: Request) {
@@ -7,8 +7,11 @@ export async function POST(req: Request) {
     const { choice, sessionId, initialStory } = await req.json();
     if (!choice || !sessionId || !initialStory) {
       return NextResponse.json(
-        { error: "Invalid request. 'choice', 'sessionId', and 'initialStory' are required." },
-        { status: 400 }
+        {
+          error:
+            "Invalid request. 'choice', 'sessionId', and 'initialStory' are required.",
+        },
+        { status: 400 },
       );
     }
 
@@ -83,7 +86,6 @@ export async function POST(req: Request) {
           Now, continue the adventure! 🚀
         `;
 
-
     // **User Prompt**
     const userPrompt = `
       **Initial Story:** 
@@ -99,11 +101,11 @@ export async function POST(req: Request) {
 
     // Generate AI response
     const responseText = await generateCompletion({
-        message: userPrompt,
-        systemPrompt,
+      message: userPrompt,
+      systemPrompt,
     });
 
-    if(!responseText) throw new Error("AI did not return a response");
+    if (!responseText) throw new Error("AI did not return a response");
 
     let storyData;
     try {
@@ -112,14 +114,14 @@ export async function POST(req: Request) {
       console.error("Error parsing AI response:", error);
       return NextResponse.json(
         { error: "Failed to parse AI response." },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
     if (!storyData.story || !storyData.choices) {
       return NextResponse.json(
         { error: "Invalid response format from AI." },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -131,7 +133,7 @@ export async function POST(req: Request) {
     console.error("Error generating adventure progress:", error);
     return NextResponse.json(
       { error: "Failed to generate story progression." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

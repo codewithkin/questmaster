@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
     if (!aiResponse) {
       return NextResponse.json(
         { error: "Failed to generate adventure" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -56,14 +56,14 @@ export async function POST(req: NextRequest) {
       console.error("Error parsing AI response:", error);
       return NextResponse.json(
         { error: "Invalid AI response format" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
     if (!parsedResponse.story || !Array.isArray(parsedResponse.choices)) {
       return NextResponse.json(
         { error: "AI response did not contain expected structure" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -72,7 +72,7 @@ export async function POST(req: NextRequest) {
     console.error("Error generating adventure:", error);
     return NextResponse.json(
       { error: "Failed to generate adventure" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
