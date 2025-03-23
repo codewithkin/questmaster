@@ -3,14 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const { prompt } = await req.json();
-
-    if (!prompt) {
-      return NextResponse.json(
-        { error: "Missing prompt" },
-        { status: 400 }
-      );
-    }
+    const prompt = "Start a new adventure";
 
     // **Verbose system prompt to enforce structured JSON output**
     const systemPrompt = `
