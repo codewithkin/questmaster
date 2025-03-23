@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { toast } from "sonner"; // Import Sonner
+import { toast } from "sonner"; // Import Sonner for notifications
 import axios from "axios";
 
 export default function AdventurePage() {
@@ -35,6 +36,7 @@ export default function AdventurePage() {
   // Function to progress the adventure
   const chooseOption = async (choice: string) => {
     setLoading(true);
+
     try {
       const res = await axios.post("/api/adventure/progress", { choice });
 
@@ -56,36 +58,70 @@ export default function AdventurePage() {
             Your Adventure Begins
           </h1>
 
-          {/* Story Content */}
+          {/* Story Content with Animation */}
           <div className="mt-4 text-slate-600">
-            {loading ? (
-              <Skeleton className="h-24 w-full bg-gray-600" />
-            ) : (
-              <p className="whitespace-pre-line">{story || "Click below to start your journey!"}</p>
-            )}
+            <AnimatePresence mode="wait">
+              {loading ? (
+                <motion.div
+                  key="loading"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <Skeleton className="h-24 w-full bg-gray-600" />
+                </motion.div>
+              ) : (
+                <motion.p
+                  key={story} // Animates when story updates
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {story || "Click below to start your journey!"}
+                </motion.p>
+              )}
+            </AnimatePresence>
           </div>
 
-          {/* Choice Buttons */}
+          {/* Choice Buttons with Animation */}
           <div className="mt-6 space-y-2">
-            {choices.length > 0 ? (
-              choices.map((choice, index) => (
-                <Button
-                  key={index}
-                  className="w-full bg-blue-500 hover:bg-blue-600 text-white"
-                  onClick={() => chooseOption(choice)}
+            <AnimatePresence mode="wait">
+              {choices.length > 0 ? (
+                choices.map((choice, index) => (
+                  <motion.div
+                    key={choice} // Ensures smooth transition when choices update
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                  >
+                    <Button
+                      className="w-full bg-blue-500 hover:bg-blue-600 text-white"
+                      onClick={() => chooseOption(choice)}
+                      disabled={loading}
+                    >
+                      {choice}
+                    </Button>
+                  </motion.div>
+                ))
+              ) : (
+                <motion.div
+                  key="start-button"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
                 >
-                  {choice}
-                </Button>
-              ))
-            ) : (
-              <Button
-                className="w-full bg-blue-500 hover:bg-blue-600 text-white"
-                onClick={startAdventure}
-                disabled={loading}
-              >
-                {loading ? "Loading..." : "Start Adventure"}
-              </Button>
-            )}
+                  <Button
+                    className="w-full bg-blue-500 hover:bg-blue-600 text-white"
+                    onClick={startAdventure}
+                    disabled={loading}
+                  >
+                    {loading ? "Loading..." : "Start Adventure"}
+                  </Button>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Back to Home */}
