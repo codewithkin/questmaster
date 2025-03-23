@@ -15,25 +15,29 @@ export default function AdventureGame() {
   const [choices, setChoices] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [initialStory, setInitialStory] = useState<string>("");
+  const [gameOver, setGameOver] = useState<boolean>(false);
   const router = useRouter();
 
   useEffect(() => {
-    const startGame = async () => {
-      setLoading(true);
-      try {
-        const res = await axios.post("/api/adventure/generate", { sessionId });
-        setStory(res.data.story);
-        setChoices(res.data.choices);
-        setInitialStory(res.data.story);
-      } catch (error) {
-        toast.error("Failed to start adventure.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
     startGame();
   }, []);
+
+  const startGame = async () => {
+    setLoading(true);
+    setGameOver(false);
+    setSessionId(uuidv4()); // Reset session for new game
+    try {
+      const res = await axios.post("/api/adventure/generate", { sessionId });
+      setStory(res.data.story);
+      setChoices(res.data.choices);
+      setInitialStory(res.data.story);
+      setGameOver(res.data.choices.length === 0); // Detect if game ends immediately
+    } catch (error) {
+      toast.error("Failed to start adventure.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const chooseOption = async (choice: string) => {
     setLoading(true);
@@ -45,6 +49,7 @@ export default function AdventureGame() {
       });
       setStory(res.data.story);
       setChoices(res.data.choices);
+      setGameOver(res.data.choices.length === 0); // Check if adventure has ended
     } catch (error) {
       toast.error("Something went wrong! Please try again.");
     } finally {
@@ -59,6 +64,8 @@ export default function AdventureGame() {
           <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
             {story.length < 1
               ? "Your Adventure Begins"
+              : gameOver
+              ? "The Journey Ends"
               : "Continue your adventure..."}
           </h1>
 
@@ -73,15 +80,22 @@ export default function AdventureGame() {
           </div>
 
           <div className="mt-6 space-y-2">
-            {choices.length > 0 ? (
+            {gameOver ? (
+              <Button
+                className="w-full bg-red-500 hover:bg-red-600 text-white"
+                onClick={startGame}
+              >
+                Start a New Adventure
+              </Button>
+            ) : choices.length > 0 ? (
               choices.map((choice, index) => (
                 <Button
-                key={index}
-                className="w-full bg-blue-500 hover:bg-blue-600 text-white whitespace-normal px-4 py-4 h-fit text-center"
-                onClick={() => chooseOption(choice)}
-              >
-                {choice}
-              </Button>
+                  key={index}
+                  className="w-full bg-blue-500 hover:bg-blue-600 text-white whitespace-normal px-4 py-4 h-fit text-center"
+                  onClick={() => chooseOption(choice)}
+                >
+                  {choice}
+                </Button>
               ))
             ) : (
               <Button

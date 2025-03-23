@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
 
       **Guidelines:**
       - Respond **ONLY** with a valid JSON object (do not include any extra text before or after).
-      - The JSON must contain two keys:
+      - The JSON must contain two required keys:
         1. **"story"**: A compelling and well-written paragraph (or more) describing the current scenario.
         2. **"choices"**: An array of 2-4 possible actions the player can take. Each choice should be a short, clear sentence, formatted as a string.
 
@@ -20,8 +20,9 @@ export async function POST(req: NextRequest) {
       - Each choice must be unique and logically follow from the given scenario.
       - Do not include generic options like "Do nothing" or "Quit the game."
       - Ensure each choice offers a distinct path for the player.
+      - If the story reaches a **natural ending**, return **an empty choices array** (\`"choices": []\`).
 
-      **Example Response:**
+      **Example Response (Ongoing Adventure):**
       {
         "story": "You find yourself in a dense jungle, surrounded by towering trees and the distant sound of running water. A worn-out map in your hands suggests two possible routes...",
         "choices": [
@@ -29,6 +30,12 @@ export async function POST(req: NextRequest) {
           "Head towards the sound of running water to find a river.",
           "Climb a nearby tree to get a better view of your surroundings."
         ]
+      }
+
+      **Example Response (Story Ending):**
+      {
+        "story": "With the treasure safely in hand, you step onto the boat and sail away, leaving the island behind. The adventure has changed you forever, and as the horizon stretches before you, you smile, knowing new journeys await.",
+        "choices": []
       }
 
       **Final Instructions:**
