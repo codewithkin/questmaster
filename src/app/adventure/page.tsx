@@ -76,12 +76,12 @@ export default function AdventureGame() {
             {choices.length > 0 ? (
               choices.map((choice, index) => (
                 <Button
-                  key={index}
-                  className="w-full bg-blue-500 hover:bg-blue-600 text-white break-words text-left"
-                  onClick={() => chooseOption(choice)}
-                >
-                  {choice}
-                </Button>
+                key={index}
+                className="w-full bg-blue-500 hover:bg-blue-600 text-white whitespace-normal px-4 py-4 h-fit text-center"
+                onClick={() => chooseOption(choice)}
+              >
+                {choice}
+              </Button>
               ))
             ) : (
               <Button
