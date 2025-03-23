@@ -11,9 +11,6 @@ export default function HomePage() {
   return (
     <div
       className="relative flex items-center justify-center min-h-screen bg-cover bg-center"
-      style={{
-        backgroundImage: "url('https://source.unsplash.com/t7YycgAoVSw')",
-      }}
     >
       {/* Overlay for better text readability */}
       <div className="absolute inset-0"></div>

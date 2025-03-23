@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { toast } from "sonner"; // Import Sonner
 import axios from "axios";
 
 export default function AdventurePage() {
@@ -25,6 +26,7 @@ export default function AdventurePage() {
       setChoices(res.data.choices);
     } catch (error) {
       console.error("Error generating adventure:", error);
+      toast.error("Failed to start adventure. Please try again!"); // Show error toast
     } finally {
       setLoading(false);
     }
@@ -40,6 +42,7 @@ export default function AdventurePage() {
       setChoices(res.data.choices);
     } catch (error) {
       console.error("Error progressing adventure:", error);
+      toast.error("Something went wrong! Please try again."); // Show error toast
     } finally {
       setLoading(false);
     }
