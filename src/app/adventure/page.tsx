@@ -61,7 +61,7 @@ export default function AdventurePage() {
             {loading ? (
               <Skeleton className="h-24 w-full bg-gray-600" />
             ) : (
-              <p>{story || "Click below to start your journey!"}</p>
+              <p className="whitespace-pre-line">{story || "Click below to start your journey!"}</p>
             )}
           </div>
 
