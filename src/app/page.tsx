@@ -1,6 +1,7 @@
 "use client";
 
-import { Button, Card, CardContent } from "@heroui/react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
 
 export default function HomePage() {
