@@ -83,3 +83,10 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
+export const config = {
+    api: {
+      responseLimit: '8mb', // Adjust as needed
+      bodyParser: { sizeLimit: '1mb' }, // Adjust if needed
+    },
+  };
