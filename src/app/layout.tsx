@@ -14,15 +14,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Interactive Story Adventure | Home",
+  title: "QuestMaster | Interactive Story Adventure",
   description:
-    "Start your interactive story adventure and shape your own destiny through choices.",
+    "Embark on an epic journey with QuestMaster, the ultimate interactive story adventure where your choices shape the outcome.",
   keywords:
-    "interactive story, text-based adventure, choose your own adventure, game",
+    "QuestMaster, interactive story, text-based adventure, choose your own adventure, game",
   openGraph: {
-    title: "Interactive Story Adventure",
+    title: "QuestMaster - Shape Your Own Adventure",
     description:
-      "Begin your journey in this immersive, choice-driven adventure game.",
+      "Dive into QuestMaster, a thrilling interactive storytelling experience where your decisions define the story.",
     type: "website",
     url: "https://questmasterforeverydayai.vercel.app/",
     images: [
@@ -30,11 +30,12 @@ export const metadata: Metadata = {
         url: "https://questmasterforeverydayai.vercel.app/assets/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Interactive Story Adventure",
+        alt: "QuestMaster - Interactive Story Adventure",
       },
     ],
   },
 };
+
 
 export default function RootLayout({
   children,

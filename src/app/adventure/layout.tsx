@@ -1,24 +1,28 @@
-export const metadata = {
-  title: "Adventure Mode | Interactive Story Game",
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "QuestMaster | Interactive Story Adventure",
   description:
-    "Continue your adventure, make choices, and shape the outcome of your journey.",
-  keywords: "adventure game, choice-based game, text adventure, role-playing",
+    "Embark on an epic journey with QuestMaster, the ultimate interactive story adventure where your choices shape the outcome.",
+  keywords:
+    "QuestMaster, interactive story, text-based adventure, choose your own adventure, game",
   openGraph: {
-    title: "Adventure Mode - Choose Your Story",
+    title: "QuestMaster - Shape Your Own Adventure",
     description:
-      "Dive into an interactive adventure where every choice matters!",
+      "Dive into QuestMaster, a thrilling interactive storytelling experience where your decisions define the story.",
     type: "website",
-    url: "https://questmasterforeverydayai.vercel.app/adventure",
+    url: "https://questmasterforeverydayai.vercel.app/",
     images: [
       {
-        url: "https://questmasterforeverydayai.vercel.app/assets/adventure-og.jpg",
+        url: "https://questmasterforeverydayai.vercel.app/assets/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Adventure Game Screenshot",
+        alt: "QuestMaster - Interactive Story Adventure",
       },
     ],
   },
 };
+
 
 export default function AdventureLayout({
   children,
