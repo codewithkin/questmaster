@@ -77,7 +77,7 @@ export default function AdventureGame() {
             {loading ? (
               <Skeleton className="h-24 w-full bg-gray-600" />
             ) : (
-              <p className="whitespace-pre-line">
+              <p className="whitespace-pre-line max-h-[16rem] overflow-y-auto">
                 {story || "Click below to start your journey!"}
               </p>
             )}
