@@ -77,6 +77,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(parsedResponse);
   } catch (error) {
     console.error("Error generating adventure:", error);
+
     return NextResponse.json(
       { error: "Failed to generate adventure" },
       { status: 500 },
@@ -84,9 +85,10 @@ export async function POST(req: NextRequest) {
   }
 }
 
+// To prevent timeouts and other errors in production
 export const config = {
-    api: {
-      responseLimit: '8mb', // Adjust as needed
-      bodyParser: { sizeLimit: '1mb' }, // Adjust if needed
-    },
-  };
+  api: {
+    responseLimit: "8mb", // Adjust as needed
+    bodyParser: { sizeLimit: "1mb" }, // Adjust if needed
+  },
+};

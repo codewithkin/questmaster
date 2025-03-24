@@ -26,8 +26,10 @@ export default function AdventureGame() {
     setLoading(true);
     setGameOver(false);
     setSessionId(uuidv4()); // Reset session for new game
+
     try {
       const res = await axios.post("/api/adventure/generate", { sessionId });
+
       setStory(res.data.story);
       setChoices(res.data.choices);
       setInitialStory(res.data.story);
@@ -41,12 +43,14 @@ export default function AdventureGame() {
 
   const chooseOption = async (choice: string) => {
     setLoading(true);
+
     try {
       const res = await axios.post("/api/adventure/progress", {
         choice,
         sessionId,
         initialStory,
       });
+
       setStory(res.data.story);
       setChoices(res.data.choices);
       setGameOver(res.data.choices.length === 0); // Check if adventure has ended
@@ -65,8 +69,8 @@ export default function AdventureGame() {
             {story.length < 1
               ? "Your Adventure Begins"
               : gameOver
-              ? "The Journey Ends"
-              : "Continue your adventure..."}
+                ? "The Journey Ends"
+                : "Continue your adventure..."}
           </h1>
 
           <div className="mt-4 text-slate-600">

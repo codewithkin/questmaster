@@ -15,11 +15,14 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Interactive Story Adventure | Home",
-  description: "Start your interactive story adventure and shape your own destiny through choices.",
-  keywords: "interactive story, text-based adventure, choose your own adventure, game",
+  description:
+    "Start your interactive story adventure and shape your own destiny through choices.",
+  keywords:
+    "interactive story, text-based adventure, choose your own adventure, game",
   openGraph: {
     title: "Interactive Story Adventure",
-    description: "Begin your journey in this immersive, choice-driven adventure game.",
+    description:
+      "Begin your journey in this immersive, choice-driven adventure game.",
     type: "website",
     url: "https://questmasterforeverydayai.vercel.app/",
     images: [
@@ -32,7 +35,6 @@ export const metadata: Metadata = {
     ],
   },
 };
-
 
 export default function RootLayout({
   children,
