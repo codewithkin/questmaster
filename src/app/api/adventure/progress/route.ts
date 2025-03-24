@@ -118,10 +118,14 @@ export async function POST(req: Request) {
 
     let storyData;
     try {
-      storyData = JSON.parse(responseText);
+      // Remove Markdown code block if present
+      const cleanedResponseText = responseText
+        .replace(/^```json\s*|```$/g, "")
+        .trim();
+
+      storyData = JSON.parse(cleanedResponseText);
     } catch (error) {
       console.log("Failed response: ", responseText);
-
       console.error("Error parsing AI response:", error);
 
       return NextResponse.json(
