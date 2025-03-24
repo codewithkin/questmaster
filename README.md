@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# QuestMaster
 
-## Getting Started
+An interactive storytelling game where your choices shape the adventure.
 
-First, run the development server:
+## 🚀 Overview
+QuestMaster is a text-based adventure game that allows players to embark on immersive story-driven journeys. Every decision you make alters the storyline, leading to multiple branching paths and unique endings. Dive into a world of mystery, strategy, and adventure where your fate is in your hands.
+
+## 🎮 Features
+- **Choice-Driven Gameplay** – Make decisions that shape the outcome of your story.
+- **Dynamic Narratives** – Experience multiple endings based on your actions.
+- **Engaging Storylines** – Dive into rich, immersive stories with compelling characters.
+- **Seamless User Experience** – Optimized for both desktop and mobile devices.
+- **Fast Performance** – Powered by Edge Functions for ultra-responsive gameplay.
+
+## 📦 Tech Stack
+- **Frontend:** Next.js, React, Tailwind CSS
+- **Backend:** Vercel Edge Functions
+- **Database:** Firebase / Supabase (if applicable)
+- **Hosting:** Vercel
+
+## 📜 Installation & Setup
+To run the project locally, follow these steps:
 
 ```bash
+# Clone the repository
+git clone https://github.com/yourusername/questmaster.git
+cd questmaster
+
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app will be available at `http://localhost:3000/`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Deployment
+QuestMaster is deployed on Vercel. To deploy your own version:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Install Vercel CLI
+global add vercel
 
-## Learn More
+# Deploy the project
+vercel
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠 Environment Variables
+To configure the project, create a `.env.local` file and add the following variables:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```env
+NEBIUS_API_KEY=your_nebius_api_key
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🐛 Troubleshooting
+- **504 Gateway Timeout:** Increase Vercel's function timeout or optimize API calls.
+- **400 Bad Request:** Ensure API requests are correctly formatted and include required parameters.
+- **Slow Responses:** Edge functions are optimized in production; local dev mode may not reflect real performance.
 
-## Deploy on Vercel
+## 👥 Contributors
+- [Your Name](https://github.com/codewithkin)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📜 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🌟 Support
+If you like this project, consider giving it a ⭐ on GitHub!
