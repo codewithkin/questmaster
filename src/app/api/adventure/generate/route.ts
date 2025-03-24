@@ -85,10 +85,6 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// To prevent timeouts and other errors in production
 export const config = {
-  api: {
-    responseLimit: "8mb", // Adjust as needed
-    bodyParser: { sizeLimit: "1mb" }, // Adjust if needed
-  },
+  runtime: "edge",
 };
