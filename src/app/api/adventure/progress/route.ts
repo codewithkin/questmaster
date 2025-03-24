@@ -120,7 +120,10 @@ export async function POST(req: Request) {
     try {
       storyData = JSON.parse(responseText);
     } catch (error) {
+      console.log("Failed response: ", responseText);
+
       console.error("Error parsing AI response:", error);
+
       return NextResponse.json(
         { error: "Failed to parse AI response." },
         { status: 500 },
